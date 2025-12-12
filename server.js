@@ -120,10 +120,10 @@ app.get('/', (req, res) => {
 
           items.forEach((item, i) => {
             const li = document.createElement('li');
-            li.innerHTML = \`
-              <a href="/view?data=\${item.data}">\${item.label || 'TOTP ' + (i+1)}</a>
-              <span class="del" onclick="delItem(\${i})">削除</span>
-            \`;
+            li.innerHTML = `
+                <a href="/view?data=${encodeURIComponent(item.data)}">${item.label || 'TOTP ' + (i+1)}</a>
+                <span class="del" onclick="delItem(${i})">削除</span>
+            `;
             listEl.appendChild(li);
           });
         }
@@ -139,12 +139,12 @@ app.get('/', (req, res) => {
         const urlParams = new URLSearchParams(location.search);
         if (urlParams.get('add')) {
           const label = urlParams.get('label');
-          const data = urlParams.get('data');
-
+          const data = decodeURIComponent(urlParams.get('data')); // ここでデコード
+        
           const items = JSON.parse(localStorage.getItem('totpList') || '[]');
           items.push({ label, data });
           localStorage.setItem('totpList', JSON.stringify(items));
-
+        
           history.replaceState({}, '', '/');
         }
 
@@ -201,7 +201,10 @@ app.get('/api/code', (req, res) => {
   const enc = req.query.data;
   if (!enc) return res.status(400).json({ error: 'no data' });
 
-  const secret = decrypt(decodeURIComponent(enc));
+  // + を %20 に置換してからデコード
+  const normalizedEnc = enc.replace(/\+/g, '%20');
+  const secret = decrypt(decodeURIComponent(normalizedEnc));
+  
   if (!secret) return res.status(400).json({ error: 'decrypt failed' });
 
   const code = authenticator.generate(secret);
