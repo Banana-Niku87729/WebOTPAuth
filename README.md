@@ -1,0 +1,2 @@
+# WebOTPAuth
+WebOTPAuthはブラウザ上でGoogle AuthenticatorやMicrosoft Authenticator等で発行できる認証コードを取得できるサイトです
