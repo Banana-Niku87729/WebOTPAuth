@@ -120,10 +120,10 @@ app.get('/', (req, res) => {
 
           items.forEach((item, i) => {
             const li = document.createElement('li');
-            li.innerHTML = `
-                <a href="/view?data=${encodeURIComponent(item.data)}">${item.label || 'TOTP ' + (i+1)}</a>
-                <span class="del" onclick="delItem(${i})">削除</span>
-            `;
+            li.innerHTML = \`
+              <a href="/view?data=\${encodeURIComponent(item.data)}">\${item.label || 'TOTP ' + (i+1)}</a>
+              <span class="del" onclick="delItem(\${i})">削除</span>
+            \`;
             listEl.appendChild(li);
           });
         }
