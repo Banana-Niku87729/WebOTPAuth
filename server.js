@@ -185,7 +185,7 @@ app.get('/view', (req, res) => {
         <script>
           const enc = ${JSON.stringify(enc)};
           async function update() {
-            const r = await fetch('/api/code?data=' + encodeURIComponent(enc));
+            const r = await fetch('/api/code?data=' + enc);
             const j = await r.json();
             document.getElementById('code').textContent = j.code || 'Error';
           }
