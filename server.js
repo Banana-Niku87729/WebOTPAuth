@@ -198,13 +198,13 @@ app.get('/view', (req, res) => {
 });
 
 app.get('/api/code', (req, res) => {
-  const enc = req.query.data;
+  let enc = req.query.data;
   if (!enc) return res.status(400).json({ error: 'no data' });
 
-  // + を %20 に置換してからデコード
-  const normalizedEnc = enc.replace(/\+/g, '%20');
-  const secret = decrypt(decodeURIComponent(normalizedEnc));
-  
+  // ブラウザが勝手に + をスペース扱いするので補正
+  enc = enc.replace(/ /g, '+');
+
+  const secret = decrypt(decodeURIComponent(enc));
   if (!secret) return res.status(400).json({ error: 'decrypt failed' });
 
   const code = authenticator.generate(secret);
