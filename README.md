@@ -1,4 +1,4 @@
-# WebOTPAuth || Get One Time OTP Auth Code
+# WebOTPAuth || Get One Time Auth Code
 WebOTPAuthはブラウザ上でGoogle AuthenticatorやMicrosoft Authenticator等で発行できる認証コードを取得できるサイトです。
 QRコードをスキャンした際に出るURLのみで確認が可能なため、職場や学校でアプリが使えなかったり拡張機能等がインストールできない際でも認証コードの取得が可能です。
 > [!NOTE]
