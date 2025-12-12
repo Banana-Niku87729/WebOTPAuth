@@ -1,0 +1,20 @@
+{
+  "name": "webotpauth-main",
+  "version": "1.0.0",
+  "description": "WebOTPAuthはブラウザ上でGoogle AuthenticatorやMicrosoft Authenticator等で発行できる認証コードを取得できるサイトです。 QRコードをスキャンした際に出るURLのみで確認が可能なため、職場や学校でアプリが使えなかったり拡張機能等がインストールできない際でも認証コードの取得が可能です。",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^2.2.1",
+    "crypto-js": "^4.2.0",
+    "dotenv": "^17.2.3",
+    "express": "^5.2.1",
+    "otplib": "^12.0.1"
+  }
+}
