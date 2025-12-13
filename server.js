@@ -30,6 +30,7 @@ app.get('/', (req, res) => {
     <head>
       <meta charset="UTF-8" />
       <title>TOTP Web</title>
+      <link rel="icon" href="assets/favicon.png" type="image/x-icon">
       <style>
         body {
           font-family: 'Segoe UI', sans-serif;
